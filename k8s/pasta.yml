@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pasta
+  labels:
+    app: food
+    type: pasta
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: food
+      type: pasta
+  template:
+    metadata:
+      labels:
+        app: food
+        type: pasta
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: pasta
+        image: "<region>-docker.pkg.dev/<projectname>/<reponame>/pasta:latest"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 100m
+            memory: 200Mi
+        ports:
+        - containerPort: 80

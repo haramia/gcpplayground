@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: boy
+  name: carbonara
   labels:
-    app: kids
-    gender: boy
+    app: food
+    type: carbonara
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: kids
-      gender: boy
+      app: food
+      type: carbonara
   template:
     metadata:
       labels:
-        app: kids
-        gender: boy
+        app: food
+        type: carbonara
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
-      - name: boy
-        image: "<youracr>.azurecr.io/boy:latest"
+      - name: carbonara
+        image: "<region>-docker.pkg.dev/<projectname>/<reponame>/carbonara:latest"
         resources:
           requests:
             cpu: 100m

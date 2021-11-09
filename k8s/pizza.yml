@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: girl
+  name: pizza
   labels:
-    app: kids
-    gender: girl
+    app: food
+    type: pizza
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: kids
-      gender: girl
+      app: food
+      type: pizza
   template:
     metadata:
       labels:
-        app: kids
-        gender: girl
+        app: food
+        type: pizza
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
-      - name: girl
-        image: "<youracr>.azurecr.io/girl:latest"
+      - name: pizza
+        image: "<region>-docker.pkg.dev/<projectname>/<reponame>/pizza:latest"
         resources:
           requests:
             cpu: 100m
