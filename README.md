@@ -9,8 +9,8 @@ More details here: https://cloud.google.com/resource-manager/docs/cloud-platform
 
 ```bash
 gcloud projects create first-project-hugh-mungus \
-  --name="First Project - Hugh Mungus" \
-  --labels=purpose=demo
+  --name "First Project - Hugh Mungus" \
+  --labels purpose=demo
 
 gcloud projects list
 
@@ -22,21 +22,17 @@ gcloud beta billing projects link first-project-hugh-mungus \
   --billing-account=0X0X0X-0X0X0X-0X0X0X
 ```
 
-## Set Region and Zone
+## Set Region and Zone and install our first VM
 
 ```bash
+gcloud services list --available | grep -i compute
+gcloud services enable compute.googleapis.com
+
 gcloud compute regions list
 gcloud compute zones list
 
 gcloud config set compute/region europe-west1
 gcloud config set compute/zone europe-west1-b
-```
-
-## Install our first VM
-
-```bash
-gcloud services list --available | grep -i compute
-gcloud services enable compute.googleapis.com
 
 gcloud compute machine-types list \
   --filter "name=f1-micro AND zone=europe-west1-b"
@@ -56,7 +52,7 @@ gcloud compute instances list
 ## Creating a Repository for our nice shiny containers
 ```bash
 gcloud services list --available | grep -B 1 -A 1 "TITLE: Artifact"
-  
+
 gcloud services enable artifactregistry.googleapis.com
 
 gcloud artifacts locations list
